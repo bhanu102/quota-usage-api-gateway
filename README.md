@@ -1,6 +1,4 @@
-# Backend API
-
-API Gateway Quota Usage
+# API Gateway Quota Usage
 
 
 
