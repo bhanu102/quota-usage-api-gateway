@@ -1,0 +1,34 @@
+service: api-key-quota-usage
+provider:
+  name: aws
+  apiGateway:
+    apiKeys:
+      - free:
+          - myFreeKey
+      - paid:
+          - myPaidKey
+    usagePlan:
+      - free:
+          quota:
+            limit: 5000
+            offset: 2
+            period: MONTH
+          throttle:
+            burstLimit: 200
+            rateLimit: 100
+      - paid:
+          quota:
+            limit: 50000
+            offset: 1
+            period: MONTH
+          throttle:
+            burstLimit: 2000
+            rateLimit: 1000
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: user/create
+          method: get
+          private: true
